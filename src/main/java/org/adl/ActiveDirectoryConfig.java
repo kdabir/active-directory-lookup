@@ -21,7 +21,7 @@ public class ActiveDirectoryConfig {
     public static final String BIND_PASSWORD_KEY = "activedirectory.bind.password";
     public static final String LOOKUP_ATTRS_KEY = "activedirectory.lookup.attrs";
     // the default name of properties file
-    public static final String CONFIG_FILE_NAME = "adl.properties";
+    public static final String DEFAULT_CONFIG_FILE_NAME = "adl.properties";
     public static final String EMPTY_STRING = "";
     
     
@@ -35,11 +35,11 @@ public class ActiveDirectoryConfig {
      * @throws IOException if 
      */
     public ActiveDirectoryConfig() throws IOException {
-        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(CONFIG_FILE_NAME);
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(DEFAULT_CONFIG_FILE_NAME);
         if (stream != null) {
             config.load(stream);
         } else {
-            config.load(new FileInputStream("./" + CONFIG_FILE_NAME));
+            config.load(new FileInputStream("./" + DEFAULT_CONFIG_FILE_NAME));
         }
     }
 

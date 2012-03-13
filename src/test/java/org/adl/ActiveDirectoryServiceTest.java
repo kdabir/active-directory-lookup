@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class ActiveDirectoryServiceTest {
 
     static ActiveDirectoryConfig config;
-    ActiveDirectoryService activeDirectoryService = new ActiveDirectoryService();
+    ActiveDirectoryLdapService activeDirectoryService = new ActiveDirectoryLdapService();
 
     @BeforeClass
     public static void setUpClass() throws Exception {

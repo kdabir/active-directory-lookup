@@ -22,7 +22,7 @@ public class ActiveDirectoryAutheticator {
     private String url;                 // ldap://somehost.test.com or ldap://someotherhost.com
     private String searchBase;          // dc=test,dc=com
     private List<String> returnedAttrs = null;
-    protected ActiveDirectoryService activeDirectoryService = null;
+    protected ActiveDirectoryLdapService activeDirectoryService = null;
 
     public ActiveDirectoryAutheticator(String domain, String url) {
         this(domain, url, "", null);
@@ -40,7 +40,7 @@ public class ActiveDirectoryAutheticator {
         this.url = url;
         this.searchBase = searchBase;
         this.returnedAttrs = returnedAttrs;
-        this.activeDirectoryService = new ActiveDirectoryService(); // initialize the core service
+        this.activeDirectoryService = new ActiveDirectoryLdapService(); // initialize the core service
     }
 
     /**
@@ -57,7 +57,7 @@ public class ActiveDirectoryAutheticator {
      * @param password
      * @return a <code>Map</code> populated with user details
      * @throws BadCredentialsException when username password do not match
-     * @throws NotFoundException if user is auth succeeds but user info can not be found in AD. 
+     * @throws NotFoundException if user auth succeeds but user info can not be found in AD. 
      */
     public Map<String, String> authenticate(String username, String password)
             throws BadCredentialsException, NotFoundException {

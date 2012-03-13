@@ -22,7 +22,7 @@ public class ActiveDirectorySearcher {
     /**
      * Service
      */
-    protected ActiveDirectoryService activeDirectoryService = null;
+    protected ActiveDirectoryLdapService activeDirectoryService = null;
     /**
      * 
      */
@@ -64,7 +64,7 @@ public class ActiveDirectorySearcher {
     public ActiveDirectorySearcher(String url, String domain, String defaultSearchBase, String username, String password, List<String> returnedAttrs) {
         this.defaultSearchBase = defaultSearchBase;
         this.returnedAttrs = returnedAttrs;
-        this.activeDirectoryService = new ActiveDirectoryService();
+        this.activeDirectoryService = new ActiveDirectoryLdapService();
         try {
             this.ldapContext = activeDirectoryService.getLdapContext(url, domain, username, password);
         } catch (CommunicationException ex) {
