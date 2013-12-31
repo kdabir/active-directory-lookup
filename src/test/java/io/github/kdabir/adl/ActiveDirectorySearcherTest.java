@@ -1,12 +1,12 @@
-package org.adl;
+package io.github.kdabir.adl;
 
-import java.util.Map;
+import io.github.kdabir.adl.ActiveDirectoryConfig;
+import io.github.kdabir.adl.ActiveDirectorySearcher;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *

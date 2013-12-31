@@ -1,4 +1,4 @@
-package org.adl;
+package io.github.kdabir.adl;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -28,7 +28,7 @@ public class ActiveDirectoryAutheticatorTest {
     }
 
     @Test
-    public void testAuthenticate_good() throws BadCredentialsException , NotFoundException{
+    public void testAuthenticate_good() throws BadCredentialsException, NotFoundException {
         assertTrue(autheticator.authenticate(config.getUsername(), config.getPassword()).size()>1);
     }
     

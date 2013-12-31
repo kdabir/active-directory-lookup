@@ -51,7 +51,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.adl.ActiveDirectoryCLI</mainClass>                
+                            <mainClass>io.github.kdabir.adl.ActiveDirectoryCLI</mainClass>
                         </manifest>
                     </archive>S
                 </configuration>
