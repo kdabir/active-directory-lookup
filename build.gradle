@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: 'idea'
+
+group = "io.github.kdabir.adl"
+version = "0.1"
+description = "A Java Library/Application to access Active Directory"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.+',
+            'org.mockito:mockito-all:1.9.5'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.10'
+}

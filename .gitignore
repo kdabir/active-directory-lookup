@@ -1,2 +1,13 @@
 /target/
 /adl.properties
+.DS_Store
+*~
+.idea
+*.iml
+*.iws
+*.ipr
+*.classpath
+.gradle
+.gradletasknamecache
+build
+out
