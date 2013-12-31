@@ -1,4 +1,4 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.api;
 
 import io.github.kdabir.adl.exceptions.ActiveDirectoryException;
 import io.github.kdabir.adl.exceptions.BadCredentialsException;

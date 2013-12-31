@@ -1,4 +1,4 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.api;
 
 import java.util.HashMap;
 import java.util.Hashtable;

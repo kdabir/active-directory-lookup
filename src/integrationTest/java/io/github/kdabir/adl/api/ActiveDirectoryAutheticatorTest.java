@@ -1,7 +1,9 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.api;
 
+import io.github.kdabir.adl.api.ActiveDirectoryAutheticator;
 import io.github.kdabir.adl.exceptions.BadCredentialsException;
 import io.github.kdabir.adl.exceptions.NotFoundException;
+import io.github.kdabir.adl.util.ActiveDirectoryConfig;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

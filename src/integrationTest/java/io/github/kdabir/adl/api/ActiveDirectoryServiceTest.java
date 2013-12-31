@@ -1,8 +1,11 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.api;
 
 import java.util.Map;
 import javax.naming.NamingException;
 import javax.naming.ldap.LdapContext;
+
+import io.github.kdabir.adl.api.ActiveDirectoryLdapService;
+import io.github.kdabir.adl.util.ActiveDirectoryConfig;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

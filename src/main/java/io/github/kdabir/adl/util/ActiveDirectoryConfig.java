@@ -1,4 +1,4 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.util;
 
 import java.io.FileInputStream;
 import java.io.IOException;

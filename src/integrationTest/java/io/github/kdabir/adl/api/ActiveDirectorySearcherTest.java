@@ -1,7 +1,7 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.api;
 
-import io.github.kdabir.adl.ActiveDirectoryConfig;
-import io.github.kdabir.adl.ActiveDirectorySearcher;
+import io.github.kdabir.adl.api.ActiveDirectorySearcher;
+import io.github.kdabir.adl.util.ActiveDirectoryConfig;
 import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.AfterClass;
