@@ -12,7 +12,25 @@ repositories {
     jcenter()
 }
 
+sourceSets {
+    integrationTest {
+        java {
+            srcDir 'src/integrationTest/java'
+        }
+        resources {
+            srcDir 'src/integrationTest/resources'
+        }
+        compileClasspath += sourceSets.main.runtimeClasspath
+    }
+}
+
+task integrationTests(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath += sourceSets.integrationTest.runtimeClasspath
+}
+
 dependencies {
+    integrationTestCompile 'junit:junit:4.+'
     testCompile 'junit:junit:4.+',
             'org.mockito:mockito-all:1.9.5'
 }

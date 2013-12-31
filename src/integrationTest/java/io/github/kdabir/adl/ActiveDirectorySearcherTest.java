@@ -2,6 +2,7 @@ package io.github.kdabir.adl;
 
 import io.github.kdabir.adl.ActiveDirectoryConfig;
 import io.github.kdabir.adl.ActiveDirectorySearcher;
+import junit.framework.TestCase;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,6 +38,7 @@ public class ActiveDirectorySearcherTest {
 
     @Test
     public void testSearch_String() throws Exception {
+        TestCase.assertTrue(true);
     }
 
 }
