@@ -1,5 +1,7 @@
 package io.github.kdabir.adl;
 
+import io.github.kdabir.adl.exceptions.BadCredentialsException;
+import io.github.kdabir.adl.exceptions.NotFoundException;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

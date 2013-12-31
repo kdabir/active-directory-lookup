@@ -1,4 +1,4 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.exceptions;
 
 /**
  * This is generic exception and underlying exception is wrapped in it

@@ -1,5 +1,8 @@
 package io.github.kdabir.adl;
 
+import io.github.kdabir.adl.exceptions.ActiveDirectoryException;
+import io.github.kdabir.adl.exceptions.NotFoundException;
+
 import java.util.List;
 import java.util.Map;
 import javax.naming.AuthenticationException;
@@ -84,7 +87,7 @@ public class ActiveDirectorySearcher {
      * 
      * @param username
      * @return
-     * @throws NotFoundException
+     * @throws io.github.kdabir.adl.exceptions.NotFoundException
      */
     public Map<String, String> search(String username) throws NotFoundException {
         return this.search(defaultSearchBase, username);

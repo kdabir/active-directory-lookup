@@ -1,4 +1,8 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.cli;
+
+import io.github.kdabir.adl.ActiveDirectoryAutheticator;
+import io.github.kdabir.adl.ActiveDirectoryConfig;
+import io.github.kdabir.adl.ActiveDirectorySearcher;
 
 import java.io.Console;
 import java.io.IOException;

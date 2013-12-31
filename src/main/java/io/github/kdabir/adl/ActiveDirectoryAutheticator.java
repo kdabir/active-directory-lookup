@@ -1,5 +1,9 @@
 package io.github.kdabir.adl;
 
+import io.github.kdabir.adl.exceptions.ActiveDirectoryException;
+import io.github.kdabir.adl.exceptions.BadCredentialsException;
+import io.github.kdabir.adl.exceptions.NotFoundException;
+
 import java.util.List;
 import java.util.Map;
 import javax.naming.AuthenticationException;
@@ -56,8 +60,8 @@ public class ActiveDirectoryAutheticator {
      * @param username
      * @param password
      * @return a <code>Map</code> populated with user details
-     * @throws BadCredentialsException when username password do not match
-     * @throws NotFoundException if user auth succeeds but user info can not be found in AD. 
+     * @throws io.github.kdabir.adl.exceptions.BadCredentialsException when username password do not match
+     * @throws io.github.kdabir.adl.exceptions.NotFoundException if user auth succeeds but user info can not be found in AD.
      */
     public Map<String, String> authenticate(String username, String password)
             throws BadCredentialsException, NotFoundException {

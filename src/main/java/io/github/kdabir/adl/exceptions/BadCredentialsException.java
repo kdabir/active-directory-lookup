@@ -1,4 +1,4 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.exceptions;
 
 /**
  * This checked exception is thrown in case of authentication failure (username

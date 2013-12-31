@@ -1,4 +1,4 @@
-package io.github.kdabir.adl;
+package io.github.kdabir.adl.exceptions;
 
 /**
  * This is thrown when searched user does not exist. client must code to catch this.
