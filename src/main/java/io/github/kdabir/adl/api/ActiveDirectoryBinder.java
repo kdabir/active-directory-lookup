@@ -1,19 +1,21 @@
 package io.github.kdabir.adl.api;
 
 import javax.naming.NamingException;
-import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 import java.util.Hashtable;
 
 public class ActiveDirectoryBinder {
-    private final ActiveDirectoryEnvironmentBuilder activeDirectoryEnvironmentBuilder;
 
-    public ActiveDirectoryBinder(ActiveDirectoryEnvironmentBuilder activeDirectoryEnvironmentBuilder) {
+    private final ActiveDirectoryEnvironmentBuilder activeDirectoryEnvironmentBuilder;
+    private final LdapContextFactory ldapContextFactory;
+
+    public ActiveDirectoryBinder(ActiveDirectoryEnvironmentBuilder activeDirectoryEnvironmentBuilder, LdapContextFactory ldapContextFactory) {
         this.activeDirectoryEnvironmentBuilder = activeDirectoryEnvironmentBuilder;
+        this.ldapContextFactory = ldapContextFactory;
     }
 
     /**
-     * Method tries to get LdapContext by connecting to the Active Directory.
+     * Method tries to get LdapContext by connecting (bind operation) to the Active Directory.
      *
      * @param url
      * @param domain
@@ -25,7 +27,6 @@ public class ActiveDirectoryBinder {
     public LdapContext getLdapContext(String url, String domain, String username, String password)
             throws NamingException {
         Hashtable environment = activeDirectoryEnvironmentBuilder.getActiveDirectoryEnvironment(url, domain, username, password);
-
-        return new InitialLdapContext(environment, null);
+        return ldapContextFactory.getLdapContext(environment);
     }
 }

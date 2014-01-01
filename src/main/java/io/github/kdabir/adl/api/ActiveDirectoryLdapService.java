@@ -28,7 +28,7 @@ import javax.naming.ldap.LdapContext;
  */
 public class ActiveDirectoryLdapService {
 
-    private final ActiveDirectoryBinder activeDirectoryBinder = new ActiveDirectoryBinder(new ActiveDirectoryEnvironmentBuilder());
+    private final ActiveDirectoryBinder activeDirectoryBinder = new ActiveDirectoryBinder(new ActiveDirectoryEnvironmentBuilder(), new LdapContextFactory());
 
     public ActiveDirectoryLdapService() {
     }
