@@ -6,7 +6,7 @@ import javax.naming.ldap.LdapContext;
 import java.util.Hashtable;
 
 public class LdapContextFactory {
-    LdapContext getLdapContext(Hashtable environment) throws NamingException {
+    LdapContext getLdapContext(Hashtable<String, String> environment) throws NamingException {
         return new InitialLdapContext(environment, null);
     }
 }

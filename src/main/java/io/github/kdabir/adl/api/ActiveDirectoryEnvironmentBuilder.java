@@ -5,8 +5,8 @@ import java.util.Hashtable;
 
 public class ActiveDirectoryEnvironmentBuilder {
 
-    Hashtable getActiveDirectoryEnvironment(String url, String domain, String username, String password) {
-        Hashtable environment = new Hashtable();
+    Hashtable<String, String> getActiveDirectoryEnvironment(String url, String domain, String username, String password) {
+        Hashtable<String, String> environment = new Hashtable<String, String>();
         environment.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");// can make it variable, not needed so far
         environment.put(Context.SECURITY_AUTHENTICATION, "simple"); // can make it variable, not needed so far
         environment.put(Context.PROVIDER_URL, url);

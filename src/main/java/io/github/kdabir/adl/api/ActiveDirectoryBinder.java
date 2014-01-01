@@ -26,7 +26,7 @@ public class ActiveDirectoryBinder {
      */
     public LdapContext getLdapContext(String url, String domain, String username, String password)
             throws NamingException {
-        Hashtable environment = activeDirectoryEnvironmentBuilder.getActiveDirectoryEnvironment(url, domain, username, password);
+        Hashtable<String, String> environment = activeDirectoryEnvironmentBuilder.getActiveDirectoryEnvironment(url, domain, username, password);
         return ldapContextFactory.getLdapContext(environment);
     }
 }

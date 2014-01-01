@@ -32,9 +32,10 @@ public class ActiveDirectoryBinderTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testShouldBindToActiveDirectoryWithCorrectEnvironment() throws Exception {
         final LdapContext expectedLdapContext = mock(LdapContext.class);
-        final Hashtable env = mock(Hashtable.class);
+        final Hashtable<String, String> env = (Hashtable<String, String>) mock(Hashtable.class);
         when(activeDirectoryEnvironmentBuilderMock.getActiveDirectoryEnvironment("a", "b", "c", "d")).thenReturn(env);
         when(ldapContextFactoryMock.getLdapContext(env)).thenReturn(expectedLdapContext);
 
