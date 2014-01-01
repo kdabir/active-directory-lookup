@@ -1,17 +1,14 @@
 package io.github.kdabir.adl.api;
 
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
-import javax.naming.Context;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
 import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
-import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 
 /**
@@ -31,6 +28,8 @@ import javax.naming.ldap.LdapContext;
  */
 public class ActiveDirectoryLdapService {
 
+    private final ActiveDirectoryBinder activeDirectoryBinder = new ActiveDirectoryBinder();
+
     public ActiveDirectoryLdapService() {
     }
     
@@ -47,14 +46,8 @@ public class ActiveDirectoryLdapService {
      */
     public LdapContext getLdapContext(String url, String domain, String username, String password)
             throws NamingException {
-        Hashtable environment = new Hashtable();
-        environment.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");// can make it variable, not needed so far
-        environment.put(Context.SECURITY_AUTHENTICATION, "simple"); // can make it variable, not needed so far
-        environment.put(Context.PROVIDER_URL, url);
-        environment.put(Context.SECURITY_PRINCIPAL, username + "@" + domain); // This is specific to AD
-        environment.put(Context.SECURITY_CREDENTIALS, password);
 
-        return new InitialLdapContext(environment, null);
+        return activeDirectoryBinder.getLdapContext(url, domain, username, password);
     }
 
     /**
