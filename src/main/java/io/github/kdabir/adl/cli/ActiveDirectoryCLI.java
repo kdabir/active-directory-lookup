@@ -4,6 +4,7 @@ import io.github.kdabir.adl.api.ActiveDirectoryAutheticator;
 import io.github.kdabir.adl.util.ActiveDirectoryConfig;
 import io.github.kdabir.adl.api.ActiveDirectorySearcher;
 
+import javax.naming.ldap.LdapContext;
 import java.io.Console;
 import java.io.IOException;
 import java.util.HashMap;
@@ -67,14 +68,17 @@ public class ActiveDirectoryCLI {
                     System.out.println(ex.toString());
                 }
             } else {
-                ActiveDirectorySearcher searcher = new ActiveDirectorySearcher(
-                        config.getUrl(),
-                        config.getDomain(),
-                        config.getSearchBase(),
-                        config.getUsername(),
-                        config.getPassword(),
-                        config.getLookupAttrs());
                 try {
+                    LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder()
+                            .getLdapContext(config.getUrl(),
+                                    config.getDomain(),
+                                    config.getUsername(),
+                                    config.getPassword()
+                            );
+                    ActiveDirectorySearcher searcher = new ActiveDirectorySearcher(ldapContext,
+                            config.getSearchBase(),
+                            config.getLookupAttrs());
+
                     result = searcher.search(args[0]);
                 } catch (Exception ex) {
                     ex.printStackTrace();

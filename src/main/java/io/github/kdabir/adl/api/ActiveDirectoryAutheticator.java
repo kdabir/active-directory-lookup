@@ -26,7 +26,6 @@ public class ActiveDirectoryAutheticator {
     private String url;                 // ldap://somehost.test.com or ldap://someotherhost.com
     private String searchBase;          // dc=test,dc=com
     private List<String> returnedAttrs = null;
-    protected ActiveDirectoryLdapService activeDirectoryService = null;
 
     public ActiveDirectoryAutheticator(String domain, String url) {
         this(domain, url, "", null);
@@ -44,7 +43,10 @@ public class ActiveDirectoryAutheticator {
         this.url = url;
         this.searchBase = searchBase;
         this.returnedAttrs = returnedAttrs;
-        this.activeDirectoryService = new ActiveDirectoryLdapService(); // initialize the core service
+    }
+
+    public static ActiveDirectoryBinder getDefaultActiveDirectoryBinder() {
+        return new ActiveDirectoryBinder(new ActiveDirectoryEnvironmentBuilder(), new LdapContextFactory());
     }
 
     /**
@@ -67,8 +69,8 @@ public class ActiveDirectoryAutheticator {
             throws BadCredentialsException, NotFoundException {
         Map<String, String> result;
         try {
-            LdapContext ldapContext = activeDirectoryService.getLdapContext(url, domain, username, password);
-            result = activeDirectoryService.search(ldapContext, searchBase, username);
+            LdapContext ldapContext = getDefaultActiveDirectoryBinder().getLdapContext(url, domain, username, password);
+            result = new ActiveDirectorySearcher(ldapContext, searchBase).search(username);
 
             if (result == null) {
                 throw new NotFoundException("Username password matched, "
@@ -102,7 +104,7 @@ public class ActiveDirectoryAutheticator {
      */
     public boolean isValid(String username, String password) {
         try {
-            activeDirectoryService.getLdapContext(url, domain, username, password);
+            getDefaultActiveDirectoryBinder().getLdapContext(url, domain, username, password);
             return true;
         } catch (AuthenticationException ex) {
             return false;

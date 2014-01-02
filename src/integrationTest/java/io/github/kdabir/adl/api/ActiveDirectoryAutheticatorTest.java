@@ -48,9 +48,8 @@ public class ActiveDirectoryAutheticatorTest {
     
     @Test (expected = NotFoundException.class)
     public void testAuthenticate_badSearchBase() throws BadCredentialsException , NotFoundException{
-        // creating a autheticator with bad search base
         ActiveDirectoryAutheticator autheticatorWithBadSearchBase = new ActiveDirectoryAutheticator(
-                config.getDomain(), config.getUrl(), config.getSearchBase()+",dc=someplasce",config.getLookupAttrs());
+                config.getDomain(), config.getUrl(), config.getSearchBase()+",dc=someplace",config.getLookupAttrs());
     
         autheticatorWithBadSearchBase.authenticate(config.getUsername(), config.getPassword());
     }    
