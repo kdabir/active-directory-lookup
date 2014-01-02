@@ -6,13 +6,13 @@ package io.github.kdabir.adl.exceptions;
  * 
  * @author kdabir
  */
-public class BadCredentialsException extends RuntimeException {
+public class BadCredentialsException extends ActiveDirectoryException {
 
-    public BadCredentialsException() {
-        super ("Invalid Username or Password");
+    public BadCredentialsException(Throwable cause) {
+        super ("Invalid Username or Password", cause);
     }
 
-    public BadCredentialsException(String msg) {
-        super (msg);
+    public BadCredentialsException(String msg, Throwable cause) {
+        super (msg, cause);
     }
 }
