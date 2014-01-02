@@ -5,7 +5,7 @@ package io.github.kdabir.adl.exceptions;
  * 
  * @author kdabir
  */
-public class NotFoundException extends Exception {
+public class NotFoundException extends RuntimeException {
 
     public NotFoundException() {
         super ("User not found");

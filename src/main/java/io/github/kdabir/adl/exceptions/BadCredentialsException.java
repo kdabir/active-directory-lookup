@@ -6,7 +6,7 @@ package io.github.kdabir.adl.exceptions;
  * 
  * @author kdabir
  */
-public class BadCredentialsException extends Exception {
+public class BadCredentialsException extends RuntimeException {
 
     public BadCredentialsException() {
         super ("Invalid Username or Password");
