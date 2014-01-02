@@ -130,7 +130,7 @@ public class ActiveDirectorySearcher {
             try {
                 ldapContext.close();
             } catch (NamingException ex) {
-                // do nothing here                
+                throw new ActiveDirectoryException("Exception while closing the context", ex);
             }
         }
     }
