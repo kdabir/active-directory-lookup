@@ -46,7 +46,7 @@ public class ActiveDirectoryBinderTest {
 
     @Test(expected = NamingException.class)
     public void shouldPropagateException() throws Exception {
-        when(ldapContextFactoryMock.getLdapContext(Matchers.<Hashtable>any())).thenThrow(new NamingException());
+        when(ldapContextFactoryMock.getLdapContext(Matchers.<Hashtable<String, String>>any())).thenThrow(new NamingException());
 
         binder.getLdapContext("a", "b", "c", "d");
     }
