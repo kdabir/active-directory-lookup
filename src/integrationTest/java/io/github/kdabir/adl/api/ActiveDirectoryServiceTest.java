@@ -46,46 +46,6 @@ public class ActiveDirectoryServiceTest {
         // clean up after test case is run
     }
 
-    @Test
-    public void testGetLdapContext_happyPath() throws NamingException {
-        LdapContext result = activeDirectoryService.getLdapContext(
-                config.getUrl(), config.getDomain(),
-                config.getUsername(), config.getPassword());
-        assertNotNull(result);
-    }
-
-    // javax.naming.CommunicationException --  when url is unreachable
-    @Test(expected = javax.naming.CommunicationException.class)
-    public void testGetLdapContext_badUrl() throws NamingException {
-        LdapContext result = activeDirectoryService.getLdapContext(
-                "ldap://fakeurl.com", config.getDomain(),
-                config.getUsername(), config.getPassword());
-        assertNull(result);
-    }
-
-    @Test(expected = javax.naming.AuthenticationException.class)
-    public void testGetLdapContext_badDomain() throws NamingException {
-        LdapContext result = activeDirectoryService.getLdapContext(
-                config.getUrl(), "dc=fake",
-                config.getUsername(), config.getPassword());
-        assertNull(result);
-    }
-
-    @Test(expected = javax.naming.AuthenticationException.class)
-    public void testGetLdapContext_badUsername() throws NamingException {
-        LdapContext result = activeDirectoryService.getLdapContext(
-                config.getUrl(), config.getDomain(),
-                "fake", config.getPassword());
-        assertNull(result);
-    }
-
-    @Test(expected = javax.naming.AuthenticationException.class)
-    public void testGetLdapContext_badPassword() throws NamingException {
-        LdapContext result = activeDirectoryService.getLdapContext(
-                config.getUrl(), config.getDomain(),
-                config.getUsername(), "fake");
-        assertNull(result);
-    }
 
     @Test
     public void testSearch_happyPath() throws NamingException {
