@@ -80,8 +80,8 @@ public class ActiveDirectoryCLI {
                     ex.printStackTrace();
                 }
             }
-            for (String key : result.keySet()) {
-                System.out.println(key + ": " + result.get(key));
+            for (Map.Entry<String, String> entry: result.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
             }
 
         } catch (IOException ex) {

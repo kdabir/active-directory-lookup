@@ -23,47 +23,57 @@ public class ActiveDirectoryConfig {
     // the default name of properties file
     public static final String DEFAULT_CONFIG_FILE_NAME = "adl.properties";
     public static final String EMPTY_STRING = "";
-    
-    
+
+
     // properties holder
     Properties config = new Properties();
 
     /**
-     * Constructs the Config using the default config file which should be placed in 
+     * Constructs the Config using the default config file which should be placed in
      * classpath (given preference) or current directory
-     * 
-     * @throws IOException if 
+     *
+     * @throws IOException if
      */
     public ActiveDirectoryConfig() throws IOException {
         InputStream stream = this.getClass().getClassLoader().getResourceAsStream(DEFAULT_CONFIG_FILE_NAME);
         if (stream != null) {
             config.load(stream);
+            stream.close();
         } else {
-            config.load(new FileInputStream("./" + DEFAULT_CONFIG_FILE_NAME));
+            loadConfigFromFile("./" + DEFAULT_CONFIG_FILE_NAME);
         }
     }
 
     /**
      * constructs the Config using specified properties file name (including path)
-     * 
+     *
      * @param filename
-     * @throws IOException 
+     * @throws IOException
      */
     public ActiveDirectoryConfig(String filename) throws IOException {
-        config.load(new FileInputStream(filename));
+        loadConfigFromFile(filename);
+    }
+
+    private void loadConfigFromFile(String filename) throws IOException {
+        final FileInputStream inStream = new FileInputStream(filename);
+        try {
+            config.load(inStream);
+        } finally {
+            inStream.close();
+        }
     }
 
     /**
      * constructs the Config using specified properties file name (including path)
-     * 
-     * @param stream 
-     * @throws IOException 
+     *
+     * @param stream
+     * @throws IOException
      */
     public ActiveDirectoryConfig(InputStream stream) throws IOException {
         config.load(stream);
-    }    
-    
-    
+    }
+
+
     public String getUsername() {
         return config.getProperty(BIND_USERNAME_KEY, EMPTY_STRING).trim();
     }
@@ -94,7 +104,6 @@ public class ActiveDirectoryConfig {
     }
 
     /**
-     * 
      * @param string
      * @return true if string has some non whitespace characters
      */

@@ -38,3 +38,10 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = '1.10'
 }
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
