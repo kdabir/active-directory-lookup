@@ -27,7 +27,6 @@ public class SearchResultMapper {
                     Attribute attribute = (Attribute) ne.next();
                     row.put(attribute.getID(), attribute.get().toString());
                 }
-                ne.close();
             }
             result.add(row);
         }
