@@ -3,13 +3,10 @@ package io.github.kdabir.adl.api;
 import io.github.kdabir.adl.exceptions.ActiveDirectoryException;
 import io.github.kdabir.adl.exceptions.NotFoundException;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
-import javax.naming.directory.Attribute;
-import javax.naming.directory.Attributes;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
 import javax.naming.ldap.LdapContext;
@@ -20,6 +17,7 @@ import javax.naming.ldap.LdapContext;
  */
 public class ActiveDirectorySearcher {
 
+    private final SearchResultMapper searchResultMapper = new SearchResultMapper();
     /**
      * To support of multi-search mode, stores the context so that bind is not 
      * required every time
@@ -91,64 +89,37 @@ public class ActiveDirectorySearcher {
         Map<String, String> result = null;
         // todo - can write a check and bind in case ldapContext gets closed
         try {
-            result = search(ldapContext, searchBase, username);
-            
-            if (result == null ){
+            if (ldapContext == null) {
+                throw new IllegalStateException("ldapContext can not be null");
+            }
+            // sAMAccountName is specific to AD
+            String searchFilter = "(&(objectClass=user)(sAMAccountName=" + username + "))";
+
+            //Create the search controls
+            SearchControls searchControls = new SearchControls();
+
+            // setting only specific attributes to be returned
+            //String returnedAtts[] = {"sn", "givenName", "mail", "telephoneNumber"};
+            //searchCtls.setReturningAttributes(returnedAtts);
+
+            //Specify the search scope
+            searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+
+            NamingEnumeration<SearchResult> answer = ldapContext.search(searchBase, searchFilter, searchControls);
+
+            final List<Map<String, String>> results = searchResultMapper.mapResult(answer);
+
+            if (results.size() == 0 ){
                 throw new NotFoundException( username + " not found");
             }
-            
+            result = results.get(0);
+            answer.close();
+
             if (returnedAttrs != null && returnedAttrs.size() > 0) {
                 result.keySet().retainAll(returnedAttrs);
             }
         } catch (NamingException ex) {
             throw new ActiveDirectoryException("Exception while searching Active Directory", ex);
-        }
-        return result;
-    }
-
-    /**
-     *
-     * Searches for user in the Active directory.
-     *
-     * @param ldapContext
-     * @param searchBase
-     * @param searchUsername
-     * @return Map populated with user details, null if not found
-     * @throws NamingException
-     */
-    private Map<String, String> search(LdapContext ldapContext, String searchBase, String searchUsername)
-            throws NamingException {
-        if (ldapContext == null) {
-            throw new IllegalArgumentException("ldapContext can not be null");
-        }
-
-        Map<String, String> result = null;
-        // sAMAccountName is specific to AD
-        String searchFilter = "(&(objectClass=user)(sAMAccountName=" + searchUsername + "))";
-
-        //Create the search controls
-        SearchControls searchControls = new SearchControls();
-
-        // setting only specific attributes to be returned
-        //String returnedAtts[] = {"sn", "givenName", "mail", "telephoneNumber"};
-        //searchCtls.setReturningAttributes(returnedAtts);
-
-        //Specify the search scope
-        searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
-
-        NamingEnumeration answer = ldapContext.search(searchBase, searchFilter, searchControls);
-        if (answer.hasMoreElements()) { // no need to loop
-            SearchResult sr = (SearchResult) answer.next();
-            result = new HashMap<String, String>();
-            Attributes attrs = sr.getAttributes();
-            if (attrs != null) {
-                NamingEnumeration ne = attrs.getAll();
-                while (ne.hasMore()) {
-                    Attribute attribute = (Attribute) ne.next();
-                    result.put(attribute.getID(), attribute.get().toString());
-                }
-                ne.close();
-            }
         }
         return result;
     }

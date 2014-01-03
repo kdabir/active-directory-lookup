@@ -56,7 +56,7 @@ public class ActiveDirectorySearchIntgTest {
         assertNotNull(result);
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected=IllegalStateException.class)
     public void testSearch_badLdapContext() throws NamingException, NotFoundException {
         String searchBase = config.getSearchBase();
         String searchUsername = config.getUsername();
