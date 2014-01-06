@@ -1,5 +1,6 @@
 package io.github.kdabir.adl.api;
 
+import io.github.kdabir.adl.api.filters.UsernameFilter;
 import io.github.kdabir.adl.exceptions.BadCredentialsException;
 import io.github.kdabir.adl.exceptions.NotFoundException;
 
@@ -62,21 +63,18 @@ public class ActiveDirectoryAutheticator {
      */
     public Map<String, String> authenticate(String username, String password)
             throws BadCredentialsException, NotFoundException {
-        Map<String, String> result;
-        LdapContext ldapContext = getDefaultActiveDirectoryBinder().getLdapContext(url, domain, username, password);
-        result = new ActiveDirectorySearcher(ldapContext, searchBase).search(username);
 
-        if (result == null) {
+        LdapContext ldapContext = getDefaultActiveDirectoryBinder().getLdapContext(url, domain, username, password);
+        final List<Map<String, String>> result = new ActiveDirectorySearcher(ldapContext, searchBase)
+                .search(new UsernameFilter(username));
+
+        if (result.size() < 1) {
             throw new NotFoundException("Username password matched, "
                     + "but user details could not be found in the given search base. "
                     + "Either search base is incorrect or user does not have privileges to search");
         }
 
-        if (returnedAttrs != null && returnedAttrs.size() > 0) {
-            result.keySet().retainAll(returnedAttrs);
-        }
-
-        return result;
+        return result.get(0);
     }
 
     /**

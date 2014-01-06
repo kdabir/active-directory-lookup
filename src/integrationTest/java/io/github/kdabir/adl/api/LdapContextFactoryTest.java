@@ -13,7 +13,6 @@ import static org.junit.Assert.assertNotNull;
 
 public class LdapContextFactoryTest {
 
-
     static ActiveDirectoryConfig config;
     LdapContextFactory ldapContextFactory = new LdapContextFactory();
     ActiveDirectoryEnvironmentBuilder builder = new ActiveDirectoryEnvironmentBuilder();
@@ -31,16 +30,12 @@ public class LdapContextFactoryTest {
         assertNotNull(result);
     }
 
-    // javax.naming.CommunicationException --  when url is unreachable
     @Test(expected = javax.naming.CommunicationException.class)
     public void testGetLdapContext_badUrl() throws NamingException {
         final Hashtable<String,String> env = builder.getActiveDirectoryEnvironment(
                 "ldap://fakeldapserver.com", config.getDomain(), // hope this never becomes a valid ldap server url :)
                 config.getUsername(), config.getPassword());
-
-        // so that test doesn't keep on waiting for long
-        //env.put("com.sun.jndi.ldap.connect.timeout", "3000");
-
+        // env.put("com.sun.jndi.ldap.connect.timeout", "3000"); // so that test doesn't keep on waiting for long
         ldapContextFactory.getLdapContext(env);
     }
 

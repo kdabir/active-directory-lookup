@@ -1,4 +1,4 @@
-package io.github.kdabir.adl.api;
+package io.github.kdabir.adl.api.mapper;
 
 import javax.naming.NamingEnumeration;
 import javax.naming.NamingException;
@@ -10,9 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class SearchResultMapper {
+public class DefaultSearchResultMapper implements SearchResultMapper {
 
-    List<Map<String, String>> mapResult(NamingEnumeration<SearchResult> namingEnumeration) throws NamingException {
+    @Override
+    public List<Map<String, String>> mapResult(NamingEnumeration<SearchResult> namingEnumeration) throws NamingException {
         List<Map<String, String>> result = new ArrayList<Map<String, String>>();
 
         while (namingEnumeration.hasMoreElements()) { // no need to loop

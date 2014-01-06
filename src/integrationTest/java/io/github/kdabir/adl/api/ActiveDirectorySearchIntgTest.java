@@ -1,9 +1,11 @@
 package io.github.kdabir.adl.api;
 
+import java.util.List;
 import java.util.Map;
 import javax.naming.NamingException;
 import javax.naming.ldap.LdapContext;
 
+import io.github.kdabir.adl.api.filters.UsernameFilter;
 import io.github.kdabir.adl.exceptions.NotFoundException;
 import io.github.kdabir.adl.util.ActiveDirectoryConfig;
 import org.junit.After;
@@ -15,9 +17,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * 
- * 
- * 
  * @author Kunal Dabir
  */
 public class ActiveDirectorySearchIntgTest {
@@ -29,53 +28,32 @@ public class ActiveDirectorySearchIntgTest {
         config = new ActiveDirectoryConfig(); // declared here as it throws exception
     }
 
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-        // clean up so that net result of running this test is zero
-    }
-
-    @Before
-    public void setUp() {
-        // set up anything thats needed for every test case
-    }
-
-    @After
-    public void tearDown() {
-        // clean up after test case is run
-    }
-
-
     @Test
-    public void testSearch_happyPath() throws NamingException, NotFoundException{
+    public void testSearch_happyPath() throws NamingException, NotFoundException {
 
         LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
         String searchBase = config.getSearchBase();
         String searchUsername = config.getUsername();
 
-        Map result = new ActiveDirectorySearcher(ldapContext, searchBase).search(searchUsername);
-        assertNotNull(result);
+        List result = new ActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
+        assertTrue(result != null && result.size() > 0);
     }
 
-    @Test(expected=IllegalStateException.class)
-    public void testSearch_badLdapContext() throws NamingException, NotFoundException {
-        String searchBase = config.getSearchBase();
-        String searchUsername = config.getUsername();
-        new ActiveDirectorySearcher(null, searchBase).search(searchUsername);
-    }
-
-    @Test(expected = NotFoundException.class)
+    @Test
     public void testSearch_badSearchBase() throws NamingException, NotFoundException {
         LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
         String searchBase = "dc=fake";
         String searchUsername = config.getUsername();
-        new ActiveDirectorySearcher(ldapContext, searchBase).search(searchUsername);
+        final List<Map<String, String>> result = new ActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
+        assertEquals(0, result.size());
     }
 
-    @Test(expected = NotFoundException.class)
-    public void testSearch_badUsername() throws NamingException,NotFoundException  {
+    @Test
+    public void testSearch_badUsername() throws NamingException, NotFoundException {
         LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
         String searchBase = config.getSearchBase();
         String searchUsername = "faker";
-        new ActiveDirectorySearcher(ldapContext, searchBase).search(searchUsername);
+        final List<Map<String, String>> result = new ActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
+        assertEquals(0, result.size());
     }
 }

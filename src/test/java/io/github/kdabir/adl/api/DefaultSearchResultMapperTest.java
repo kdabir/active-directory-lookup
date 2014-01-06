@@ -1,5 +1,6 @@
 package io.github.kdabir.adl.api;
 
+import io.github.kdabir.adl.api.mapper.DefaultSearchResultMapper;
 import org.junit.Test;
 
 import javax.naming.NamingEnumeration;
@@ -12,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class SearchResultMapperTest {
+public class DefaultSearchResultMapperTest {
 
     @Test
     @SuppressWarnings("unchecked")
@@ -29,7 +30,7 @@ public class SearchResultMapperTest {
         when(namingEnumeration.hasMoreElements()).thenReturn(true, true, false);
         when(namingEnumeration.next()).thenReturn(searchResult1, searchResult2);
 
-        SearchResultMapper mapper = new SearchResultMapper();
+        DefaultSearchResultMapper mapper = new DefaultSearchResultMapper();
 
         final List<Map<String,String>> results = mapper.mapResult(namingEnumeration);
 
@@ -44,7 +45,7 @@ public class SearchResultMapperTest {
         NamingEnumeration<SearchResult> namingEnumeration = mock(NamingEnumeration.class);
         when(namingEnumeration.hasMoreElements()).thenReturn(false);
 
-        SearchResultMapper mapper = new SearchResultMapper();
+        DefaultSearchResultMapper mapper = new DefaultSearchResultMapper();
 
         final List<Map<String,String>> results = mapper.mapResult(namingEnumeration);
 

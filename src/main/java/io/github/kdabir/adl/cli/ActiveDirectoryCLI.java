@@ -1,6 +1,7 @@
 package io.github.kdabir.adl.cli;
 
 import io.github.kdabir.adl.api.ActiveDirectoryAutheticator;
+import io.github.kdabir.adl.api.filters.UsernameFilter;
 import io.github.kdabir.adl.util.ActiveDirectoryConfig;
 import io.github.kdabir.adl.api.ActiveDirectorySearcher;
 
@@ -8,6 +9,7 @@ import javax.naming.ldap.LdapContext;
 import java.io.Console;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -76,10 +78,11 @@ public class ActiveDirectoryCLI {
                                     config.getPassword()
                             );
                     ActiveDirectorySearcher searcher = new ActiveDirectorySearcher(ldapContext,
-                            config.getSearchBase(),
-                            config.getLookupAttrs());
+                            config.getSearchBase())
+                            .withReturnedAttrs(config.getLookupAttrs());
 
-                    result = searcher.search(args[0]);
+                    final List<Map<String,String>> search = searcher.search(new UsernameFilter(args[0]));
+                    result = search.get(0);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

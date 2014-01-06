@@ -40,7 +40,5 @@ public class ActiveDirectoryBinder {
         } catch (NamingException ex) {
             throw new ActiveDirectoryException(ex);
         }
-
-
     }
 }
