@@ -5,7 +5,7 @@ apply plugin: 'pmd'
 apply plugin: 'idea'
 
 group = "io.github.kdabir.adl"
-version = "0.1"
+version = "0.1-SNAPSHOT"
 description = "A Java Library/Application to access Active Directory"
 
 repositories {

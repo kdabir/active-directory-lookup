@@ -103,7 +103,7 @@ public class ActiveDirectorySearcher {
         return this;
     }
 
-    public SearchResultMapper getDefaultSearchResultMapper() {
+    public SearchResultMapper getSearchResultMapper() {
         return searchResultMapper;
     }
 
