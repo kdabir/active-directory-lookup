@@ -3,7 +3,7 @@ package io.github.kdabir.adl.api;
 import javax.naming.Context;
 import java.util.Hashtable;
 
-public class ActiveDirectoryEnvironmentBuilder {
+public class ActiveDirectoryEnvironmentProvider {
 
     Hashtable<String, String> getActiveDirectoryEnvironment(String url, String domain, String username, String password) {
         Hashtable<String, String> environment = new Hashtable<String, String>();

@@ -11,11 +11,11 @@ import java.util.Hashtable;
 
 public class ActiveDirectoryBinder {
 
-    private final ActiveDirectoryEnvironmentBuilder activeDirectoryEnvironmentBuilder;
+    private final ActiveDirectoryEnvironmentProvider activeDirectoryEnvironmentProvider;
     private final LdapContextFactory ldapContextFactory;
 
-    public ActiveDirectoryBinder(ActiveDirectoryEnvironmentBuilder activeDirectoryEnvironmentBuilder, LdapContextFactory ldapContextFactory) {
-        this.activeDirectoryEnvironmentBuilder = activeDirectoryEnvironmentBuilder;
+    public ActiveDirectoryBinder(ActiveDirectoryEnvironmentProvider activeDirectoryEnvironmentProvider, LdapContextFactory ldapContextFactory) {
+        this.activeDirectoryEnvironmentProvider = activeDirectoryEnvironmentProvider;
         this.ldapContextFactory = ldapContextFactory;
     }
 
@@ -30,7 +30,7 @@ public class ActiveDirectoryBinder {
      * @throws javax.naming.NamingException - if bind is unsuccessful
      */
     public LdapContext getLdapContext(String url, String domain, String username, String password) {
-        Hashtable<String, String> environment = activeDirectoryEnvironmentBuilder.getActiveDirectoryEnvironment(url, domain, username, password);
+        Hashtable<String, String> environment = activeDirectoryEnvironmentProvider.getActiveDirectoryEnvironment(url, domain, username, password);
         try {
             return ldapContextFactory.getLdapContext(environment);
         } catch (AuthenticationException ex) {

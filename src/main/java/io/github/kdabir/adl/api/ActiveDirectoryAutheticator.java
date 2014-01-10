@@ -42,7 +42,7 @@ public class ActiveDirectoryAutheticator {
     }
 
     public static ActiveDirectoryBinder getDefaultActiveDirectoryBinder() {
-        return new ActiveDirectoryBinder(new ActiveDirectoryEnvironmentBuilder(), new LdapContextFactory());
+        return new ActiveDirectoryBinder(new ActiveDirectoryEnvironmentProvider(), new LdapContextFactory());
     }
 
     /**

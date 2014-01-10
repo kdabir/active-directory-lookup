@@ -28,11 +28,11 @@ public class ActiveDirectoryBinderTest {
     LdapContextFactory ldapContextFactoryMock;
 
     @Mock
-    ActiveDirectoryEnvironmentBuilder activeDirectoryEnvironmentBuilderMock;
+    ActiveDirectoryEnvironmentProvider activeDirectoryEnvironmentProviderMock;
 
     @Before
     public void setUp() throws Exception {
-        binder = new ActiveDirectoryBinder(activeDirectoryEnvironmentBuilderMock, ldapContextFactoryMock);
+        binder = new ActiveDirectoryBinder(activeDirectoryEnvironmentProviderMock, ldapContextFactoryMock);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class ActiveDirectoryBinderTest {
     public void testShouldBindToActiveDirectoryWithCorrectEnvironment() throws Exception {
         final LdapContext expectedLdapContext = mock(LdapContext.class);
         final Hashtable<String, String> env = (Hashtable<String, String>) mock(Hashtable.class);
-        when(activeDirectoryEnvironmentBuilderMock.getActiveDirectoryEnvironment("a", "b", "c", "d")).thenReturn(env);
+        when(activeDirectoryEnvironmentProviderMock.getActiveDirectoryEnvironment("a", "b", "c", "d")).thenReturn(env);
         when(ldapContextFactoryMock.getLdapContext(env)).thenReturn(expectedLdapContext);
 
         final LdapContext returnedLdapContext = binder.getLdapContext("a", "b", "c", "d");

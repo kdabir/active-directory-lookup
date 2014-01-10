@@ -8,12 +8,12 @@ import java.util.Hashtable;
 import static javax.naming.Context.*;
 import static org.junit.Assert.assertEquals;
 
-public class ActiveDirectoryEnvironmentBuilderTest {
+public class ActiveDirectoryEnvironmentProviderTest {
     Hashtable environment;
 
     @Before
     public void setUp() throws Exception {
-        environment = new ActiveDirectoryEnvironmentBuilder()
+        environment = new ActiveDirectoryEnvironmentProvider()
                 .getActiveDirectoryEnvironment("ldap://example.com", "example.com", "user", "password");
     }
 
