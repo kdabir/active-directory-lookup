@@ -21,7 +21,6 @@ public class ActiveDirectoryAutheticatorTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         // set up anything thats needed to test this class
-        System.out.println("Testing the ActiveDirectoryService ...");
         config = new ActiveDirectoryConfig(); // declared here as it throws exception
         autheticator = new ActiveDirectoryAutheticator(config.getDomain(), config.getUrl(), config.getSearchBase(),config.getLookupAttrs());
     }

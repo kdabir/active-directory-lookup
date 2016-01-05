@@ -3,6 +3,7 @@ package io.github.kdabir.adl.api;
 import io.github.kdabir.adl.api.filters.UsernameFilter;
 import io.github.kdabir.adl.exceptions.BadCredentialsException;
 import io.github.kdabir.adl.exceptions.NotFoundException;
+import io.github.kdabir.adl.util.SearchBaseGuesser;
 
 import javax.naming.ldap.LdapContext;
 import java.util.List;
@@ -24,10 +25,7 @@ public class ActiveDirectoryAutheticator {
     private List<String> returnedAttrs = null;
 
     public ActiveDirectoryAutheticator(String domain, String url) {
-        this(domain, url, "", null);
-        //TODO derive the default search base from domain
-        String derivedSeachBase = "";
-        this.searchBase = derivedSeachBase;
+        this(domain, url, new SearchBaseGuesser().guessFrom(domain), null);
     }
 
     public ActiveDirectoryAutheticator(String domain, String url, String searchBase) {
