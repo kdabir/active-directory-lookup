@@ -1,12 +1,12 @@
 apply plugin: 'java'
-
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
-apply plugin: 'idea'
+apply plugin: 'application'
 
 group = "io.github.kdabir.adl"
 version = "0.1-SNAPSHOT"
 description = "A Java Library/Application to access Active Directory"
+mainClassName = "io.github.kdabir.adl.cli.ActiveDirectoryCLI"
 
 repositories {
     jcenter()
@@ -30,13 +30,14 @@ task integrationTests(type: Test) {
 }
 
 dependencies {
-    integrationTestCompile 'junit:junit:4.+'
-    testCompile 'junit:junit:4.+',
-            'org.mockito:mockito-all:1.9.5'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+
+    integrationTestCompile 'junit:junit:4.12'
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.10'
+    gradleVersion = '2.10'
 }
 
 tasks.withType(FindBugs) {
