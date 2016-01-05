@@ -4,25 +4,19 @@ apply plugin: 'application'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 apply plugin: "jacoco"
-
+apply plugin: 'maven-publish'
 
 group = "io.github.kdabir.adl"
 version = "0.1-SNAPSHOT"
 description = "A Java Library/Application to access Active Directory"
 mainClassName = "io.github.kdabir.adl.cli.ActiveDirectoryCLI"
 
-repositories {
-    jcenter()
-}
+repositories { jcenter() }
 
 sourceSets {
     integrationTest {
-        java {
-            srcDir 'src/integrationTest/java'
-        }
-        resources {
-            srcDir 'src/integrationTest/resources'
-        }
+        java.srcDir 'src/integrationTest/java'
+        resources.srcDir 'src/integrationTest/resources'
         compileClasspath += sourceSets.main.runtimeClasspath
     }
 }
@@ -58,3 +52,11 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
