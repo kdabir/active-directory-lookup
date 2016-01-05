@@ -1,17 +1,17 @@
-apply plugin: 'java'
-apply plugin: 'application'
+plugins {
+    id 'java'
+    id 'application'
 
-apply plugin: 'findbugs'
-apply plugin: 'pmd'
-apply plugin: "jacoco"
-apply plugin: 'maven-publish'
+    id 'findbugs'
+    id 'pmd'
+    id 'jacoco'
 
-group = "io.github.kdabir.adl"
-version = "0.1-SNAPSHOT"
-description = "A Java Library/Application to access Active Directory"
+    id 'maven-publish'
+    id 'net.researchgate.release' version '2.3.4'
+    id "com.jfrog.bintray" version '1.4'
+}
+
 mainClassName = "io.github.kdabir.adl.cli.ActiveDirectoryCLI"
-
-repositories { jcenter() }
 
 sourceSets {
     integrationTest {
@@ -21,16 +21,19 @@ sourceSets {
     }
 }
 
-task integrationTests(type: Test) {
-    testClassesDir = sourceSets.integrationTest.output.classesDir
-    classpath += sourceSets.integrationTest.runtimeClasspath
-}
+repositories { jcenter() }
 
 dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:1.10.19'
 
     integrationTestCompile 'junit:junit:4.12'
+}
+
+
+task integrationTests(type: Test) {
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath += sourceSets.integrationTest.runtimeClasspath
 }
 
 task wrapper(type: Wrapper) {
@@ -60,3 +63,22 @@ publishing {
         }
     }
 }
+
+bintray {
+    user = project.properties.get "bintrayUser"
+    key = project.properties.get "bintrayKey"
+    publications = ['mavenJava']
+
+    def projectName = project.name
+    def projectDescription = project.description
+
+    pkg {
+        repo = 'maven'
+        name = projectName
+        desc = projectDescription
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/kdabir/active-directory-lookup.git'
+    }
+}
+
+afterReleaseBuild.dependsOn tasks.bintrayUpload
