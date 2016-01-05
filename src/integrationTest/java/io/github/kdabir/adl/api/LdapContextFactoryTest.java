@@ -1,6 +1,7 @@
 package io.github.kdabir.adl.api;
 
 import io.github.kdabir.adl.util.ActiveDirectoryConfig;
+import io.github.kdabir.adl.util.ActiveDirectoryEnvironmentProvider;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

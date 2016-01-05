@@ -2,6 +2,7 @@ package io.github.kdabir.adl.api;
 
 import io.github.kdabir.adl.exceptions.ActiveDirectoryException;
 import io.github.kdabir.adl.exceptions.BadCredentialsException;
+import io.github.kdabir.adl.util.ActiveDirectoryEnvironmentProvider;
 
 import javax.naming.AuthenticationException;
 import javax.naming.CommunicationException;

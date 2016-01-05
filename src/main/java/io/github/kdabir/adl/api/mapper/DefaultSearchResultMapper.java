@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DefaultSearchResultMapper implements SearchResultMapper {
+public class DefaultSearchResultMapper implements SearchResultMapper<Map<String, String>> {
 
     @Override
     public List<Map<String, String>> mapResult(NamingEnumeration<SearchResult> namingEnumeration) throws NamingException {

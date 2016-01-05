@@ -8,9 +8,6 @@ import javax.naming.ldap.LdapContext;
 import io.github.kdabir.adl.api.filters.UsernameFilter;
 import io.github.kdabir.adl.exceptions.NotFoundException;
 import io.github.kdabir.adl.util.ActiveDirectoryConfig;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -35,7 +32,7 @@ public class ActiveDirectorySearchIntgTest {
         String searchBase = config.getSearchBase();
         String searchUsername = config.getUsername();
 
-        List result = new ActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
+        List result = new SimpleActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
         assertTrue(result != null && result.size() > 0);
     }
 
@@ -44,7 +41,7 @@ public class ActiveDirectorySearchIntgTest {
         LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
         String searchBase = "dc=fake";
         String searchUsername = config.getUsername();
-        final List<Map<String, String>> result = new ActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
+        final List<Map<String, String>> result = new SimpleActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
         assertEquals(0, result.size());
     }
 
@@ -53,7 +50,7 @@ public class ActiveDirectorySearchIntgTest {
         LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
         String searchBase = config.getSearchBase();
         String searchUsername = "faker";
-        final List<Map<String, String>> result = new ActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
+        final List<Map<String, String>> result = new SimpleActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
         assertEquals(0, result.size());
     }
 }

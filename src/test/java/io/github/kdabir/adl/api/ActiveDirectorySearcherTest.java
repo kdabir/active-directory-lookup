@@ -55,11 +55,10 @@ public class ActiveDirectorySearcherTest {
     @Test
     public void searchShouldDelegateToLdapContextSearch() throws Exception {
         final LdapContext mockLdapContext = mock(LdapContext.class);
-        final SearchResultMapper mockSearchResultMapper = mock(SearchResultMapper.class);
+        final SearchResultMapper<Map<String,String>> mockSearchResultMapper = mock(SearchResultMapper.class);
         final String fakeTestBase = "dc=testbase";
-        final ActiveDirectorySearcher activeDirectorySearcher =
-                new ActiveDirectorySearcher(mockLdapContext, fakeTestBase)
-                    .withSearchResultMapper(mockSearchResultMapper);
+        final ActiveDirectorySearcher<Map<String,String>> activeDirectorySearcher =
+                new ActiveDirectorySearcher<Map<String,String>>(mockLdapContext, fakeTestBase, mockSearchResultMapper);
         final NamingEnumeration namingEnumeration = mock(NamingEnumeration.class);
 
         when(mockLdapContext.search(eq(fakeTestBase), eq("fakefilter"), any(SearchControls.class))).thenReturn(namingEnumeration);
@@ -77,7 +76,7 @@ public class ActiveDirectorySearcherTest {
 
     @Test
     public void shouldTakeDefaultSearchResultMapper() throws Exception {
-        assertThat(new ActiveDirectorySearcher(null, null).getSearchResultMapper(), instanceOf(DefaultSearchResultMapper.class));
+        assertThat(new SimpleActiveDirectorySearcher(null, null).getSearchResultMapper(), instanceOf(DefaultSearchResultMapper.class));
     }
 
     @Test

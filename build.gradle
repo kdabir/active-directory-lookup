@@ -1,7 +1,10 @@
 apply plugin: 'java'
+apply plugin: 'application'
+
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
-apply plugin: 'application'
+apply plugin: "jacoco"
+
 
 group = "io.github.kdabir.adl"
 version = "0.1-SNAPSHOT"
@@ -46,3 +49,12 @@ tasks.withType(FindBugs) {
         html.enabled = true
     }
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport

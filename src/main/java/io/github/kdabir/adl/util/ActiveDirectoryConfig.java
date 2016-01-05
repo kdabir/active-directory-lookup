@@ -26,7 +26,7 @@ public class ActiveDirectoryConfig {
 
 
     // properties holder
-    Properties config = new Properties();
+    final Properties config = new Properties();
 
     /**
      * Constructs the Config using the default config file which should be placed in
@@ -108,7 +108,7 @@ public class ActiveDirectoryConfig {
      * @return true if string has some non whitespace characters
      */
     public static boolean hasValue(String string) {
-        return (string != null) ? (string.trim().length() > 0) : false;
+        return string != null && string.trim().length() > 0;
     }
 
 }

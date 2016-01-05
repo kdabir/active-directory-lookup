@@ -1,6 +1,7 @@
 package io.github.kdabir.adl.cli;
 
 import io.github.kdabir.adl.api.ActiveDirectoryAutheticator;
+import io.github.kdabir.adl.api.SimpleActiveDirectorySearcher;
 import io.github.kdabir.adl.api.filters.UsernameFilter;
 import io.github.kdabir.adl.util.ActiveDirectoryConfig;
 import io.github.kdabir.adl.api.ActiveDirectorySearcher;
@@ -77,7 +78,7 @@ public class ActiveDirectoryCLI {
                                     config.getUsername(),
                                     config.getPassword()
                             );
-                    ActiveDirectorySearcher searcher = new ActiveDirectorySearcher(ldapContext,
+                    ActiveDirectorySearcher searcher = new SimpleActiveDirectorySearcher(ldapContext,
                             config.getSearchBase())
                             .withReturnedAttrs(config.getLookupAttrs());
 

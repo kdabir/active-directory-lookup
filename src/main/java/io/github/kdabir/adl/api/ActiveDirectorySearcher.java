@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @author Kunal Dabir
  */
-public class ActiveDirectorySearcher {
+public class ActiveDirectorySearcher<T> {
 
     /**
      * To support of multi-search mode, stores the context so that bind is not 
@@ -36,7 +36,7 @@ public class ActiveDirectorySearcher {
     /**
      * Mapper
      */
-    protected SearchResultMapper searchResultMapper = null;
+    protected SearchResultMapper<T> searchResultMapper = null;
 
     /**
      * Constructs the Searcher.  
@@ -46,10 +46,10 @@ public class ActiveDirectorySearcher {
      * 
      * @param searchBase
      */
-    public ActiveDirectorySearcher(LdapContext ldapContext, String searchBase) {
+    public ActiveDirectorySearcher(LdapContext ldapContext, String searchBase, SearchResultMapper<T> searchResultMapper) {
         this.ldapContext = ldapContext;
         this.searchBase = searchBase;
-        this.searchResultMapper = new DefaultSearchResultMapper(); // Default search mapper
+        this.searchResultMapper = searchResultMapper;
     }
     
     /**
@@ -61,7 +61,7 @@ public class ActiveDirectorySearcher {
      * @return
      * @throws io.github.kdabir.adl.exceptions.ActiveDirectoryException is something goes wrong
      */
-    public List<Map<String, String>> search(SearchFilter searchFilter) {
+    public List<T> search(SearchFilter searchFilter) {
         try {
             return searchResultMapper.mapResult(
                             ldapContext.search(searchBase, searchFilter.getFilter(), getSearchControls()));
@@ -74,7 +74,7 @@ public class ActiveDirectorySearcher {
         SearchControls searchControls = new SearchControls();
         searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
         if (returnedAttrs != null && returnedAttrs.size() > 0) {
-            searchControls.setReturningAttributes((String[]) returnedAttrs.toArray());
+            searchControls.setReturningAttributes(returnedAttrs.toArray(new String[0]));
         }
         return searchControls;
     }
@@ -93,12 +93,8 @@ public class ActiveDirectorySearcher {
         }
     }
 
-    public ActiveDirectorySearcher withSearchResultMapper(SearchResultMapper searchResultMapper) {
-        this.searchResultMapper = searchResultMapper;
-        return this;
-    }
 
-    public ActiveDirectorySearcher withReturnedAttrs(List<String> returnedAttrs) {
+    public ActiveDirectorySearcher<T> withReturnedAttrs(List<String> returnedAttrs) {
         this.returnedAttrs = returnedAttrs;
         return this;
     }

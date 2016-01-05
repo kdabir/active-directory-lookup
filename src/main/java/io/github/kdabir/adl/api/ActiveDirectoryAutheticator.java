@@ -3,6 +3,7 @@ package io.github.kdabir.adl.api;
 import io.github.kdabir.adl.api.filters.UsernameFilter;
 import io.github.kdabir.adl.exceptions.BadCredentialsException;
 import io.github.kdabir.adl.exceptions.NotFoundException;
+import io.github.kdabir.adl.util.ActiveDirectoryEnvironmentProvider;
 import io.github.kdabir.adl.util.SearchBaseGuesser;
 
 import javax.naming.ldap.LdapContext;
@@ -63,7 +64,8 @@ public class ActiveDirectoryAutheticator {
             throws BadCredentialsException, NotFoundException {
 
         LdapContext ldapContext = getDefaultActiveDirectoryBinder().getLdapContext(url, domain, username, password);
-        final List<Map<String, String>> result = new ActiveDirectorySearcher(ldapContext, searchBase)
+        final List<Map<String, String>> result = new SimpleActiveDirectorySearcher(ldapContext, searchBase)
+                .withReturnedAttrs(returnedAttrs)
                 .search(new UsernameFilter(username));
 
         if (result.size() < 1) {

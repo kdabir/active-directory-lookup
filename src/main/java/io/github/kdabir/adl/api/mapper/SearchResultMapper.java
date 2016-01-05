@@ -9,6 +9,6 @@ import java.util.Map;
 /**
  *
  */
-public interface SearchResultMapper {
-    List<Map<String, String>> mapResult(NamingEnumeration<SearchResult> namingEnumeration) throws NamingException;
+public interface SearchResultMapper<T> {
+    List<T> mapResult(NamingEnumeration<SearchResult> namingEnumeration) throws NamingException;
 }
