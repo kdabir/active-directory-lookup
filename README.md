@@ -4,6 +4,51 @@ Active Directory Lookup
 Active Directory Lookup is a simple Java API to access MS Active Directory for doing very simple things like Authentication
 and Search.
 
+## Using
+
+The built library can be consumed using from jitpack repo  
+[![](https://jitpack.io/v/kdabir/active-directory-lookup.svg)](https://jitpack.io/#kdabir/active-directory-lookup)
+
+### Gradle
+
+
+Add this at the top of build.gradle
+
+    allprojects {
+		repositories {
+			maven { url 'https://jitpack.io' }
+		}
+	}
+    
+Add/merge the dependency in the `dependencies` section    
+
+    dependencies {
+	    compile 'com.github.kdabir:active-directory-lookup:1.0.0'
+	}
+
+
+### Maven
+
+
+Add this in the pom.xml
+
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
+
+
+Add this to the `dependencies` section within pom.xml
+
+	<dependency>
+	    <groupId>com.github.kdabir</groupId>
+	    <artifactId>active-directory-lookup</artifactId>
+	    <version>1.0.0</version>
+	</dependency>
+
+
 ## Building
 
 The project is built and packaged using Gradle.
