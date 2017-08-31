@@ -15,16 +15,16 @@ The built library can be consumed using from jitpack repo
 Add this at the top of build.gradle
 
     allprojects {
-		repositories {
-			maven { url 'https://jitpack.io' }
-		}
-	}
+        repositories {
+            maven { url 'https://jitpack.io' }
+        }
+    }
     
 Add/merge the dependency in the `dependencies` section    
 
     dependencies {
 	    compile 'com.github.kdabir:active-directory-lookup:1.0.0'
-	}
+    }
 
 
 ### Maven
@@ -32,12 +32,12 @@ Add/merge the dependency in the `dependencies` section
 
 Add this in the pom.xml
 
-	<repositories>
-		<repository>
-		    <id>jitpack.io</id>
-		    <url>https://jitpack.io</url>
-		</repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
 
 Add this to the `dependencies` section within pom.xml
