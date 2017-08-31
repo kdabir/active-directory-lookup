@@ -50,6 +50,8 @@ Add this to the `dependencies` section within pom.xml
 
 
 ## Building
+=======
+[![Build Status](https://travis-ci.org/kdabir/active-directory-lookup.svg)](https://travis-ci.org/kdabir/active-directory-lookup)
 
 The project is built and packaged using Gradle.
 
@@ -66,9 +68,21 @@ Unit tests do not depend on any Active Directory instance and hence can be run w
 You need to set the `adl.properties` in the root of the project with the right configuration set in order to run Integration
 Tests.
 
+### Installing to local Maven repo
+
+`gradle publishToMavenLocal`
+
+This make's the jar available in you local maven repository for usage.
+
 
 ## References :
 
 * http://docs.oracle.com/javase/7/docs/technotes/guides/jndi/jndi-ldap.html
 * http://docs.oracle.com/javase/tutorial/jndi/ops/faq.html
 * http://technet.microsoft.com/en-us/library/aa996205(v=exchg.65).aspx#BasicLDAPSyntax
+
+
+## Finding configuration
+
+
+`nslookup -type=srv _ldap._tcp.DOMAINNAME`
