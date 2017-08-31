@@ -50,7 +50,7 @@ Add this to the `dependencies` section within pom.xml
 
 
 ## Building
-=======
+
 [![Build Status](https://travis-ci.org/kdabir/active-directory-lookup.svg)](https://travis-ci.org/kdabir/active-directory-lookup)
 
 The project is built and packaged using Gradle.
