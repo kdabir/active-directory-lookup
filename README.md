@@ -4,15 +4,45 @@ Active Directory Lookup
 Active Directory Lookup is a simple Java API to access MS Active Directory for doing very simple things like Authentication
 and Search.
 
-## Using
+## Quick Start
 
-The built library can be consumed using from jitpack repo
+Assuming we know the values of these variables 
+
+    String domain;              // e.g acme.org
+    String url;                 // e.g. ldap://somehost.acme.org or ldap://someotherhost.com
+    String searchBase;          // e.g. dc=acme,dc=org
+    String username             // e.g. johndoe
+    String password             // e.g. password
+
+
+### Authenticating with Active Directory
+
+    authenticator = new ActiveDirectoryAuthenticator(domain, url); // check out other constructors
+    
+    authenticator.authenticate(username, password);
+
+
+### Searching in Active Directory
+
+    searcher = new SimpleActiveDirectorySearcher(url, domain, username, password, searchBase);
+
+    searcher.searchByUsername("superman");
+
+### Building LdapContext
+
+    LdapContext ldapContext = ActiveDirectoryAuthenticator
+                    .getDefaultActiveDirectoryBinder()
+                    .getLdapContext(url, domain, username, password);
+
+
+## Installation
+
+The built library can be consumed directly from jitpack repo
 
 [![](https://jitpack.io/v/kdabir/active-directory-lookup.svg)](https://jitpack.io/#kdabir/active-directory-lookup)
 
 
-### Gradle
-
+### Using Gradle
 
 Add this at the top of build.gradle
 
@@ -29,7 +59,7 @@ Add/merge the dependency in the `dependencies` section
     }
 
 
-### Maven
+### Using Maven
 
 
 Add this to the `pom.xml`
@@ -61,7 +91,7 @@ details. The key methods to look out for are:
 - [`ActiveDirectorySearcher::search(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectorySearcher.html#search-io.github.kdabir.adl.api.filters.SearchFilter-)
 - [`SimpleActiveDirectorySearcher::searchByUsername(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/SimpleActiveDirectorySearcher.html#searchByUsername-java.lang.String-)
 
-## Building
+## Building Locally
 
 [![Build Status](https://travis-ci.org/kdabir/active-directory-lookup.svg)](https://travis-ci.org/kdabir/active-directory-lookup)
 
