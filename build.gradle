@@ -32,12 +32,12 @@ dependencies {
 
 
 task integrationTests(type: Test) {
-    testClassesDir = sourceSets.integrationTest.output.classesDir
+    testClassesDirs = sourceSets.integrationTest.output.getClassesDirs()
     classpath += sourceSets.integrationTest.runtimeClasspath
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.10'
+    gradleVersion = '4.1'
 }
 
 tasks.withType(FindBugs) {
