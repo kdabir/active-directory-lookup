@@ -22,13 +22,14 @@ public class ActiveDirectoryBinder {
 
     /**
      * Method tries to get LdapContext by connecting (bind operation) to the Active Directory.
+     * <p>may throw javax.naming.NamingException - if bind is unsuccessful </p>
      *
      * @param url
      * @param domain
      * @param username
      * @param password
      * @return LdapContext
-     * @throws javax.naming.NamingException - if bind is unsuccessful
+     *
      */
     public LdapContext getLdapContext(String url, String domain, String username, String password) {
         Hashtable<String, String> environment = activeDirectoryEnvironmentProvider.getActiveDirectoryEnvironment(url, domain, username, password);

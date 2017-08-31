@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * <p>This class provides simple API to authenticate users against the Active Directory.</p>
  * <p>{@code boolean isValid(String username, String password) }</p>
- * <p/>
+ *
  * <p>{@code Map<String, String> authenticate(String username, String password) }</p>
  *
  * @author Kunal Dabir
@@ -51,8 +51,8 @@ public class ActiveDirectoryAutheticator {
      * the same credentials and returns a {@code Map<String,String>} populated
      * with user details.
      * </p>
-     * <p/>
-     * Throws {@code ActiveDirectoryException} (RuntimeException) if something goes wrong
+     *
+     * <p>Throws {@code ActiveDirectoryException} (RuntimeException) if something goes wrong</p>
      *
      * @param username
      * @param password
@@ -80,8 +80,8 @@ public class ActiveDirectoryAutheticator {
     /**
      * Just checks the username/password by doing a bind. This method does not
      * throw any checked exception.
-     * <p/>
-     * throws ActiveDirectoryException (RuntimeException) if something goes wrong
+     *
+     * <p> Throws ActiveDirectoryException (RuntimeException) if something goes wrong </p>
      *
      * @param username
      * @param password

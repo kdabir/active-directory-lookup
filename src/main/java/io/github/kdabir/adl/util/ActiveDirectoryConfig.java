@@ -32,7 +32,7 @@ public class ActiveDirectoryConfig {
      * Constructs the Config using the default config file which should be placed in
      * classpath (given preference) or current directory
      *
-     * @throws IOException if
+     * @throws IOException if could not read default file
      */
     public ActiveDirectoryConfig() throws IOException {
         InputStream stream = this.getClass().getClassLoader().getResourceAsStream(DEFAULT_CONFIG_FILE_NAME);
@@ -48,7 +48,7 @@ public class ActiveDirectoryConfig {
      * constructs the Config using specified properties file name (including path)
      *
      * @param filename
-     * @throws IOException
+     * @throws IOException if could not read file
      */
     public ActiveDirectoryConfig(String filename) throws IOException {
         loadConfigFromFile(filename);
@@ -67,7 +67,7 @@ public class ActiveDirectoryConfig {
      * constructs the Config using specified properties file name (including path)
      *
      * @param stream
-     * @throws IOException
+     * @throws IOException if could not read from stream
      */
     public ActiveDirectoryConfig(InputStream stream) throws IOException {
         config.load(stream);
