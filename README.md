@@ -6,8 +6,10 @@ and Search.
 
 ## Using
 
-The built library can be consumed using from jitpack repo  
+The built library can be consumed using from jitpack repo
+
 [![](https://jitpack.io/v/kdabir/active-directory-lookup.svg)](https://jitpack.io/#kdabir/active-directory-lookup)
+
 
 ### Gradle
 
@@ -23,14 +25,14 @@ Add this at the top of build.gradle
 Add/merge the dependency in the `dependencies` section    
 
     dependencies {
-	    compile 'com.github.kdabir:active-directory-lookup:1.0.0'
+	    compile 'com.github.kdabir:active-directory-lookup:1.0.2'
     }
 
 
 ### Maven
 
 
-Add this in the pom.xml
+Add this to the `pom.xml`
 
     <repositories>
         <repository>
@@ -40,14 +42,24 @@ Add this in the pom.xml
     </repositories>
 
 
-Add this to the `dependencies` section within pom.xml
+Add this to the `dependencies` section within `pom.xml`
 
-	<dependency>
-	    <groupId>com.github.kdabir</groupId>
-	    <artifactId>active-directory-lookup</artifactId>
-	    <version>1.0.0</version>
-	</dependency>
+    <dependency>
+        <groupId>com.github.kdabir</groupId>
+        <artifactId>active-directory-lookup</artifactId>
+        <version>1.0.2</version>
+    </dependency>
 
+
+## API Documentation
+
+Browse the [JavaDoc](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/) for 
+details. The key methods to look out for are: 
+  
+- [`ActiveDirectoryAuthenticator::authenticate(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectoryAuthenticator.html#authenticate-java.lang.String-java.lang.String-) 
+- [`ActiveDirectoryAuthenticator::isValid(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectoryAuthenticator.html#isValid-java.lang.String-java.lang.String-)  
+- [`ActiveDirectorySearcher::search(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectorySearcher.html#search-io.github.kdabir.adl.api.filters.SearchFilter-)
+- [`SimpleActiveDirectorySearcher::searchByUsername(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/SimpleActiveDirectorySearcher.html#searchByUsername-java.lang.String-)
 
 ## Building
 
