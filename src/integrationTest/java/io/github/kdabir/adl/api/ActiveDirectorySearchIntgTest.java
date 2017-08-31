@@ -28,7 +28,7 @@ public class ActiveDirectorySearchIntgTest {
     @Test
     public void testSearch_happyPath() throws NamingException, NotFoundException {
 
-        LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
+        LdapContext ldapContext = ActiveDirectoryAuthenticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
         String searchBase = config.getSearchBase();
         String searchUsername = config.getUsername();
 
@@ -38,7 +38,7 @@ public class ActiveDirectorySearchIntgTest {
 
     @Test
     public void testSearch_badSearchBase() throws NamingException, NotFoundException {
-        LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
+        LdapContext ldapContext = ActiveDirectoryAuthenticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
         String searchBase = "dc=fake";
         String searchUsername = config.getUsername();
         final List<Map<String, String>> result = new SimpleActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));
@@ -47,7 +47,7 @@ public class ActiveDirectorySearchIntgTest {
 
     @Test
     public void testSearch_badUsername() throws NamingException, NotFoundException {
-        LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
+        LdapContext ldapContext = ActiveDirectoryAuthenticator.getDefaultActiveDirectoryBinder().getLdapContext(config.getUrl(), config.getDomain(), config.getUsername(), config.getPassword());
         String searchBase = config.getSearchBase();
         String searchUsername = "faker";
         final List<Map<String, String>> result = new SimpleActiveDirectorySearcher(ldapContext, searchBase).search(new UsernameFilter(searchUsername));

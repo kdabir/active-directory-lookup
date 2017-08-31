@@ -1,6 +1,6 @@
 package io.github.kdabir.adl.cli;
 
-import io.github.kdabir.adl.api.ActiveDirectoryAutheticator;
+import io.github.kdabir.adl.api.ActiveDirectoryAuthenticator;
 import io.github.kdabir.adl.api.SimpleActiveDirectorySearcher;
 import io.github.kdabir.adl.api.filters.UsernameFilter;
 import io.github.kdabir.adl.util.ActiveDirectoryConfig;
@@ -15,7 +15,7 @@ import java.util.Map;
 
 /**
  * The command line program to search the user in the AD
- * 
+ *
  * @author Kunal Dabir
  */
 public class ActiveDirectoryCLI {
@@ -60,7 +60,7 @@ public class ActiveDirectoryCLI {
             Map<String, String> result = new HashMap<String, String>();
 
             if (authenticate) {
-                ActiveDirectoryAutheticator authenticator = new ActiveDirectoryAutheticator(
+                ActiveDirectoryAuthenticator authenticator = new ActiveDirectoryAuthenticator(
                         config.getDomain(),
                         config.getUrl(),
                         config.getSearchBase(),
@@ -72,7 +72,7 @@ public class ActiveDirectoryCLI {
                 }
             } else {
                 try {
-                    LdapContext ldapContext = ActiveDirectoryAutheticator.getDefaultActiveDirectoryBinder()
+                    LdapContext ldapContext = ActiveDirectoryAuthenticator.getDefaultActiveDirectoryBinder()
                             .getLdapContext(config.getUrl(),
                                     config.getDomain(),
                                     config.getUsername(),

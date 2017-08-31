@@ -18,22 +18,22 @@ import java.util.Map;
  *
  * @author Kunal Dabir
  */
-public class ActiveDirectoryAutheticator {
+public class ActiveDirectoryAuthenticator {
 
     private String domain;              // e.g test.com
     private String url;                 // ldap://somehost.test.com or ldap://someotherhost.com
     private String searchBase;          // dc=test,dc=com
     private List<String> returnedAttrs = null;
 
-    public ActiveDirectoryAutheticator(String domain, String url) {
+    public ActiveDirectoryAuthenticator(String domain, String url) {
         this(domain, url, new SearchBaseGuesser().guessFrom(domain), null);
     }
 
-    public ActiveDirectoryAutheticator(String domain, String url, String searchBase) {
+    public ActiveDirectoryAuthenticator(String domain, String url, String searchBase) {
         this(domain, url, searchBase, null);
     }
 
-    public ActiveDirectoryAutheticator(String domain, String url, String searchBase, List<String> returnedAttrs) {
+    public ActiveDirectoryAuthenticator(String domain, String url, String searchBase, List<String> returnedAttrs) {
         this.domain = domain;
         this.url = url;
         this.searchBase = searchBase;

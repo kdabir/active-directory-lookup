@@ -1,6 +1,5 @@
 package io.github.kdabir.adl.api;
 
-import io.github.kdabir.adl.api.ActiveDirectoryAutheticator;
 import io.github.kdabir.adl.exceptions.BadCredentialsException;
 import io.github.kdabir.adl.exceptions.NotFoundException;
 import io.github.kdabir.adl.util.ActiveDirectoryConfig;
@@ -13,16 +12,16 @@ import static org.junit.Assert.*;
  *
  * @author kdabir
  */
-public class ActiveDirectoryAutheticatorTest {
+public class ActiveDirectoryAuthenticatorTest {
 
     static ActiveDirectoryConfig config;
-    static ActiveDirectoryAutheticator autheticator;
+    static ActiveDirectoryAuthenticator authenticator;
 
     @BeforeClass
     public static void setUpClass() throws Exception {
         // set up anything thats needed to test this class
         config = new ActiveDirectoryConfig(); // declared here as it throws exception
-        autheticator = new ActiveDirectoryAutheticator(config.getDomain(), config.getUrl(), config.getSearchBase(),config.getLookupAttrs());
+        authenticator = new ActiveDirectoryAuthenticator(config.getDomain(), config.getUrl(), config.getSearchBase(),config.getLookupAttrs());
     }
 
     @AfterClass
@@ -32,39 +31,39 @@ public class ActiveDirectoryAutheticatorTest {
 
     @Test
     public void testAuthenticate_good() throws BadCredentialsException, NotFoundException {
-        assertTrue(autheticator.authenticate(config.getUsername(), config.getPassword()).size()>1);
+        assertTrue(authenticator.authenticate(config.getUsername(), config.getPassword()).size()>1);
     }
-    
+
     @Test (expected = BadCredentialsException.class)
     public void testAuthenticate_badPassword() throws BadCredentialsException , NotFoundException{
-        autheticator.authenticate(config.getUsername(), "unreal");
+        authenticator.authenticate(config.getUsername(), "unreal");
     }
-    
+
     @Test (expected = BadCredentialsException.class)
     public void testAuthenticate_badUsername() throws BadCredentialsException , NotFoundException{
-        autheticator.authenticate("some0ne", config.getPassword());
-    }   
-    
+        authenticator.authenticate("some0ne", config.getPassword());
+    }
+
     @Test (expected = NotFoundException.class)
     public void testAuthenticate_badSearchBase() throws BadCredentialsException , NotFoundException{
-        ActiveDirectoryAutheticator autheticatorWithBadSearchBase = new ActiveDirectoryAutheticator(
+        ActiveDirectoryAuthenticator authenticatorWithBadSearchBase = new ActiveDirectoryAuthenticator(
                 config.getDomain(), config.getUrl(), config.getSearchBase()+",dc=someplace",config.getLookupAttrs());
-    
-        autheticatorWithBadSearchBase.authenticate(config.getUsername(), config.getPassword());
-    }    
-    
+
+        authenticatorWithBadSearchBase.authenticate(config.getUsername(), config.getPassword());
+    }
+
     @Test
     public void testIsValid_good() {
-        assertTrue(autheticator.isValid(config.getUsername(), config.getPassword()));
+        assertTrue(authenticator.isValid(config.getUsername(), config.getPassword()));
     }
-    
+
     @Test
-    public void testIsValid_badPassword() { 
-        assertFalse(autheticator.isValid(config.getUsername(), "fake"));
+    public void testIsValid_badPassword() {
+        assertFalse(authenticator.isValid(config.getUsername(), "fake"));
     }
-    
+
     @Test
     public void testIsValid_badUsername() { // ofcourse this password is of no use :P
-        assertFalse(autheticator.isValid("n0nex1stent", config.getPassword()));
+        assertFalse(authenticator.isValid("n0nex1stent", config.getPassword()));
     }
 }
