@@ -60,9 +60,9 @@ allprojects {
 Add/merge the dependency in the `dependencies` section    
 
 ```groovy
-    dependencies {
-	    compile 'com.github.kdabir:active-directory-lookup:1.0.2'
-    }
+dependencies {
+    compile 'com.github.kdabir:active-directory-lookup:1.0.2'
+}
 ```
 
 ### Using Maven
