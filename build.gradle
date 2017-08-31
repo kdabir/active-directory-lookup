@@ -55,11 +55,22 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+}
+
+build.dependsOn javadocJar
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+            artifact javadocJar
         }
     }
 }
@@ -84,13 +95,3 @@ bintray {
 afterReleaseBuild.dependsOn tasks.bintrayUpload
 
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives javadocJar
-}
-
-build.dependsOn javadocJar
