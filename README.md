@@ -8,32 +8,36 @@ and Search.
 
 Assuming we know the values of these variables 
 
-    String domain;              // e.g acme.org
-    String url;                 // e.g. ldap://somehost.acme.org or ldap://someotherhost.com
-    String searchBase;          // e.g. dc=acme,dc=org
-    String username             // e.g. johndoe
-    String password             // e.g. password
-
+```java
+String domain;              // e.g. acme.org
+String url;                 // e.g. ldap://somehost.acme.org or ldap://someotherhost.com
+String searchBase;          // e.g. dc=acme,dc=org
+String username             // e.g. johndoe
+String password             // e.g. password
+```
 
 ### Authenticating with Active Directory
 
-    authenticator = new ActiveDirectoryAuthenticator(domain, url); // check out other constructors
+```java
+authenticator = new ActiveDirectoryAuthenticator(domain, url); // check out other constructors
     
-    authenticator.authenticate(username, password);
-
+authenticator.authenticate(username, password);
+```
 
 ### Searching in Active Directory
 
-    searcher = new SimpleActiveDirectorySearcher(url, domain, username, password, searchBase);
+```java
+searcher = new SimpleActiveDirectorySearcher(url, domain, username, password, searchBase);
 
-    searcher.searchByUsername("superman");
-
+searcher.searchByUsername("superman");
+```
 ### Building LdapContext
 
-    LdapContext ldapContext = ActiveDirectoryAuthenticator
-                    .getDefaultActiveDirectoryBinder()
-                    .getLdapContext(url, domain, username, password);
-
+```java
+LdapContext ldapContext = ActiveDirectoryAuthenticator
+                .getDefaultActiveDirectoryBinder()
+                .getLdapContext(url, domain, username, password);
+```
 
 ## Installation
 
@@ -46,40 +50,43 @@ The built library can be consumed directly from jitpack repo
 
 Add this at the top of build.gradle
 
-    allprojects {
-        repositories {
-            maven { url 'https://jitpack.io' }
-        }
+```groovy
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
     }
-    
+}
+```    
 Add/merge the dependency in the `dependencies` section    
 
+```groovy
     dependencies {
 	    compile 'com.github.kdabir:active-directory-lookup:1.0.2'
     }
-
+```
 
 ### Using Maven
 
-
 Add this to the `pom.xml`
 
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
-
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
 
 Add this to the `dependencies` section within `pom.xml`
 
-    <dependency>
-        <groupId>com.github.kdabir</groupId>
-        <artifactId>active-directory-lookup</artifactId>
-        <version>1.0.2</version>
-    </dependency>
-
+```xml
+<dependency>
+    <groupId>com.github.kdabir</groupId>
+    <artifactId>active-directory-lookup</artifactId>
+    <version>1.0.2</version>
+</dependency>
+```
 
 ## API Documentation
 
