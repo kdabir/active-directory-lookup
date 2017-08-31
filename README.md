@@ -12,8 +12,8 @@ Assuming we know the values of these variables
 String domain;              // e.g. acme.org
 String url;                 // e.g. ldap://somehost.acme.org or ldap://someotherhost.com
 String searchBase;          // e.g. dc=acme,dc=org
-String username             // e.g. johndoe
-String password             // e.g. password
+String username;            // e.g. johndoe
+String password;            // e.g. password
 ```
 
 ### Authenticating with Active Directory
