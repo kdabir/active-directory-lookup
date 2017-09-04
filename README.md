@@ -126,7 +126,7 @@ This make's the jar available in you local maven repository for usage.
 
 ## References :
 
-* http://docs.oracle.com/javase/7/docs/technotes/guides/jndi/jndi-ldap.html
+* http://docs.oracle.com/javase/8/docs/technotes/guides/jndi/jndi-ldap.html
 * http://docs.oracle.com/javase/tutorial/jndi/ops/faq.html
 * http://technet.microsoft.com/en-us/library/aa996205(v=exchg.65).aspx#BasicLDAPSyntax
 
