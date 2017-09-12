@@ -1,7 +1,7 @@
 Active Directory Lookup
 =======================
 
-Active Directory Lookup provides extremely simple Java API to access MS Active Directory for most common tasks like Authentication and Search. This lightweight library does not depend on any other library (No transitive dependency) and is merely 17Kb in size.
+Active Directory Lookup is an extremely simple Java API to access MS Active Directory for common tasks like user authentication and search. This lightweight library does not depend on any other library (No transitive dependencies) and is merely 17Kb in size. It also provides a minimal CLI for quick operations.
 
 ## Quick Start
 
