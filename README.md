@@ -3,6 +3,9 @@ Active Directory Lookup
 
 Active Directory Lookup is an extremely simple Java API to access MS Active Directory for common tasks like user authentication and search. This lightweight library does not depend on any other library (No transitive dependencies) and is merely 17Kb in size. It also provides a minimal [CLI](https://github.com/kdabir/active-directory-lookup/blob/master/src/main/java/io/github/kdabir/adl/cli/ActiveDirectoryCLI.java) for quick operations.
 
+
+[![Build Status](https://travis-ci.org/kdabir/active-directory-lookup.svg)](https://travis-ci.org/kdabir/active-directory-lookup)
+
 ## Quick Start
 
 Assuming we know the values of these variables 
@@ -98,8 +101,6 @@ details. The key methods to look out for are:
 - [`SimpleActiveDirectorySearcher::searchByUsername(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/SimpleActiveDirectorySearcher.html#searchByUsername-java.lang.String-)
 
 ## Building Locally
-
-[![Build Status](https://travis-ci.org/kdabir/active-directory-lookup.svg)](https://travis-ci.org/kdabir/active-directory-lookup)
 
 The project is built and packaged using Gradle.
 
