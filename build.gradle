@@ -24,7 +24,7 @@ sourceSets {
 repositories { jcenter() }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.13.1'
     testCompile 'org.mockito:mockito-all:1.10.19'
 
     integrationTestCompile 'junit:junit:4.12'
