@@ -1,16 +1,15 @@
 plugins {
     id 'java'
     id 'application'
-
-    id 'findbugs'
-    id 'pmd'
-    id 'jacoco'
-
     id 'maven-publish'
-    id 'net.researchgate.release' version '2.3.4'
-    id "com.jfrog.bintray" version '1.4'
+
+    id 'jacoco'
+    id "com.github.spotbugs" version "4.7.1"
 }
 
+
+group = "io.github.kdabir.adl"
+description = "A Java Library/Application to access Active Directory"
 mainClassName = "io.github.kdabir.adl.cli.ActiveDirectoryCLI"
 
 sourceSets {
@@ -21,30 +20,19 @@ sourceSets {
     }
 }
 
-repositories { jcenter() }
+repositories { mavenCentral() }
 
 dependencies {
-    testCompile 'junit:junit:4.13.2'
-    testCompile 'org.mockito:mockito-all:1.10.19'
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.mockito:mockito-all:1.10.19'
 
-    integrationTestCompile 'junit:junit:4.12'
+    integrationTestImplementation 'junit:junit:4.12'
 }
 
 
 task integrationTests(type: Test) {
     testClassesDirs = sourceSets.integrationTest.output.getClassesDirs()
     classpath += sourceSets.integrationTest.runtimeClasspath
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
-}
-
-tasks.withType(FindBugs) {
-    reports {
-        xml.enabled = false
-        html.enabled = true
-    }
 }
 
 jacocoTestReport {
@@ -55,6 +43,7 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
+
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
@@ -74,24 +63,5 @@ publishing {
         }
     }
 }
-
-bintray {
-    user = project.properties.get "bintrayUser"
-    key = project.properties.get "bintrayKey"
-    publications = ['mavenJava']
-
-    def projectName = project.name
-    def projectDescription = project.description
-
-    pkg {
-        repo = 'maven'
-        name = projectName
-        desc = projectDescription
-        licenses = ['MIT']
-        vcsUrl = 'https://github.com/kdabir/active-directory-lookup.git'
-    }
-}
-
-afterReleaseBuild.dependsOn tasks.bintrayUpload
 
 
