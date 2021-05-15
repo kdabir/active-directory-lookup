@@ -4,8 +4,6 @@ Active Directory Lookup
 Active Directory Lookup is an extremely simple Java API to access MS Active Directory for common tasks like user authentication and search. This lightweight library does not depend on any other library (No transitive dependencies) and is merely 17Kb in size. It also provides a minimal [CLI](https://github.com/kdabir/active-directory-lookup/blob/master/src/main/java/io/github/kdabir/adl/cli/ActiveDirectoryCLI.java) for quick operations.
 
 
-[![Build Status](https://travis-ci.org/kdabir/active-directory-lookup.svg)](https://travis-ci.org/kdabir/active-directory-lookup)
-
 ## Quick Start
 
 Assuming we know the values of these variables 
@@ -45,7 +43,7 @@ LdapContext ldapContext = ActiveDirectoryAuthenticator
 
 The built library can be consumed directly from jitpack repo
 
-[![](https://jitpack.io/v/kdabir/active-directory-lookup.svg)](https://jitpack.io/#kdabir/active-directory-lookup)
+[![Release](https://jitpack.io/v/com.kdabir/active-directory-lookup.svg)](https://jitpack.io/#com.kdabir/active-directory-lookup)
 
 
 ### Using Gradle
@@ -63,7 +61,7 @@ Add/merge the dependency in the `dependencies` section
 
 ```groovy
 dependencies {
-    compile 'com.github.kdabir:active-directory-lookup:1.0.2'
+    implementation "com.kdabir:active-directory-lookup:1.0.2" 
 }
 ```
 
@@ -84,7 +82,7 @@ Add this to the `dependencies` section within `pom.xml`
 
 ```xml
 <dependency>
-    <groupId>com.github.kdabir</groupId>
+    <groupId>com.kdabir</groupId>
     <artifactId>active-directory-lookup</artifactId>
     <version>1.0.2</version>
 </dependency>
@@ -92,13 +90,13 @@ Add this to the `dependencies` section within `pom.xml`
 
 ## API Documentation
 
-Browse the [JavaDoc](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/) for 
+Browse the [JavaDoc](https://jitpack.io/com/kdabir/active-directory-lookup/1.0.2/javadoc/) for 
 details. The key methods to look out for are: 
   
-- [`ActiveDirectoryAuthenticator::authenticate(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectoryAuthenticator.html#authenticate-java.lang.String-java.lang.String-) 
-- [`ActiveDirectoryAuthenticator::isValid(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectoryAuthenticator.html#isValid-java.lang.String-java.lang.String-)  
-- [`ActiveDirectorySearcher::search(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectorySearcher.html#search-io.github.kdabir.adl.api.filters.SearchFilter-)
-- [`SimpleActiveDirectorySearcher::searchByUsername(..)`](https://jitpack.io/com/github/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/SimpleActiveDirectorySearcher.html#searchByUsername-java.lang.String-)
+- [`ActiveDirectoryAuthenticator::authenticate(..)`](https://jitpack.io/com/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectoryAuthenticator.html#authenticate-java.lang.String-java.lang.String-) 
+- [`ActiveDirectoryAuthenticator::isValid(..)`](https://jitpack.io/com/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectoryAuthenticator.html#isValid-java.lang.String-java.lang.String-)  
+- [`ActiveDirectorySearcher::search(..)`](https://jitpack.io/com/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/ActiveDirectorySearcher.html#search-io.github.kdabir.adl.api.filters.SearchFilter-)
+- [`SimpleActiveDirectorySearcher::searchByUsername(..)`](https://jitpack.io/com/kdabir/active-directory-lookup/1.0.2/javadoc/io/github/kdabir/adl/api/SimpleActiveDirectorySearcher.html#searchByUsername-java.lang.String-)
 
 ## Building Locally
 
