@@ -26,7 +26,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-all:1.10.19'
 
-    integrationTestImplementation 'junit:junit:4.12'
+    integrationTestImplementation 'junit:junit:4.13.2'
 }
 
 
